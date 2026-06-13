@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://sgx577h7qcs4"]
+
+[ext_resource type="Script" uid="uid://cdaua853bdrgf" path="res://scripts/pendulum_controller.gd" id="1_ftd7c"]
+[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/pid_controller.gd" id="2_yi53h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cart"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h367c"]
+size = Vector2(60, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhvww"]
+size = Vector2(6, 120)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ground"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftd7c"]
+size = Vector2(1200, 20)
+
+[node name="InvertedPendulum" type="Node2D" unique_id=2089002323]
+
+[node name="Cart" type="RigidBody2D" parent="." unique_id=1457916125 node_paths=PackedStringArray("pid", "position_pid", "pendulum")]
+position = Vector2(991, 1062)
+physics_material_override = SubResource("PhysicsMaterial_cart")
+lock_rotation = true
+script = ExtResource("1_ftd7c")
+pid = NodePath("PendulumPID")
+position_pid = NodePath("PositionPID")
+pendulum = NodePath("../Pendulum")
+enable_position_loop = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cart" unique_id=1323739283]
+shape = SubResource("RectangleShape2D_h367c")
+
+[node name="ColorRect" type="ColorRect" parent="Cart" unique_id=580789777]
+offset_left = -30.0
+offset_top = -15.0
+offset_right = 30.0
+offset_bottom = 15.0
+color = Color(0.14901961, 0.7372549, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Cart" unique_id=2004433850]
+position = Vector2(0, -15)
+node_a = NodePath("..")
+node_b = NodePath("../../Pendulum")
+
+[node name="PendulumPID" type="Node" parent="Cart" unique_id=831539741]
+script = ExtResource("2_yi53h")
+kp = 3000.0
+kd = 200.0
+output_max = 3000.0
+
+[node name="PositionPID" type="Node" parent="Cart" unique_id=934852326]
+script = ExtResource("2_yi53h")
+kp = 0.005
+kd = 0.1
+integral_limit = 1.0
+output_max = 0.08
+
+[node name="Pendulum" type="RigidBody2D" parent="." unique_id=1950229106]
+position = Vector2(991, 1062)
+rotation = 0.017453292
+mass = 0.1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pendulum" unique_id=432657005]
+position = Vector2(0.38756943, -75.449356)
+shape = SubResource("RectangleShape2D_qhvww")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=4533779]
+physics_material_override = SubResource("PhysicsMaterial_ground")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=858761670]
+position = Vector2(916, 1087)
+shape = SubResource("RectangleShape2D_ftd7c")
+
+[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=1892227064]
+offset_left = 316.0
+offset_top = 1077.0
+offset_right = 1516.0
+offset_bottom = 1097.0
+color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,273 @@
+[gd_scene format=3 uid="uid://cwnbxixorykq6"]
+
+[ext_resource type="Script" uid="uid://b8y4e8ptxtqub" path="res://cart.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/pid_controller.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bwlr81ykxswvm" path="res://scripts/data_monitor.gd" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://bnu1phu3yfjkv" path="res://scripts/pid_panel.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://5s2cduacjx48" path="res://scripts/data_bridge.gd" id="4_272bh"]
+[ext_resource type="Script" uid="uid://b8eph5hl0e3uu" path="res://scripts/plotter.gd" id="6_5vw27"]
+[ext_resource type="Script" uid="uid://cjt62b21tt51r" path="res://scripts/var_panel.gd" id="6_272bh"]
+[ext_resource type="Script" uid="uid://h70j1rh2xw5r" path="res://scripts/env_panel.gd" id="7_5vw27"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+size = Vector2(101, 41)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(121, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(6.5, 281.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(6.5, 281.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(1911, 48)
+
+[node name="Main" type="Node2D" unique_id=507501447]
+
+[node name="RigidBody" type="RigidBody2D" parent="." unique_id=442122667 node_paths=PackedStringArray("pid")]
+physics_material_override = SubResource("PhysicsMaterial_ig7tw")
+script = ExtResource("1_ig7tw")
+pid = NodePath("PIDController")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody" unique_id=1368743263]
+position = Vector2(891, 1053)
+shape = SubResource("RectangleShape2D_7dm0k")
+debug_color = Color(0.7563962, 0.29091814, 0.872207, 0.41960785)
+
+[node name="PIDController" type="Node" parent="RigidBody" unique_id=728468301]
+script = ExtResource("2_0xm2m")
+
+[node name="RigidBody2" type="RigidBody2D" parent="." unique_id=395422053]
+physics_material_override = SubResource("PhysicsMaterial_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2" unique_id=225749702]
+position = Vector2(1677, 1046)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1566681851]
+
+[node name="LeftWall" type="CollisionShape2D" parent="StaticBody2D" unique_id=1158782787]
+position = Vector2(3.75, 932.75)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="RightWall" type="CollisionShape2D" parent="StaticBody2D" unique_id=899086441]
+position = Vector2(1906, 934)
+shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1273869143]
+position = Vector2(954, 1099)
+physics_material_override = SubResource("PhysicsMaterial_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=265459333]
+show_behind_parent = true
+shape = SubResource("RectangleShape2D_ig7tw")
+debug_color = Color(0.5646432, 0.55857855, 5.7756904e-07, 0.41960785)
+
+[node name="DataMonitor" type="Node" parent="." unique_id=407729199 node_paths=PackedStringArray("target")]
+script = ExtResource("3_7mycd")
+target = NodePath("../RigidBody")
+
+[node name="DataBridge" type="Node" parent="." unique_id=1222652676 node_paths=PackedStringArray("monitor", "plotter")]
+script = ExtResource("4_272bh")
+monitor = NodePath("../DataMonitor")
+plotter = NodePath("../Plotter")
+
+[node name="UI" type="Control" parent="." unique_id=143087573]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 587.0
+offset_top = 77.0
+offset_right = 1121.0
+offset_bottom = 345.0
+
+[node name="PIDPanel" type="VBoxContainer" parent="UI" unique_id=700828055 node_paths=PackedStringArray("pid_controller", "slider_body")]
+layout_mode = 0
+offset_left = -328.0
+offset_bottom = 174.0
+script = ExtResource("3_h2yge")
+pid_controller = NodePath("../../RigidBody/PIDController")
+slider_body = NodePath("../../RigidBody")
+
+[node name="PID 控制器" type="Label" parent="UI/PIDPanel" unique_id=1674092643]
+layout_mode = 2
+text = "PID控制器"
+
+[node name="HBoxContainer_TargetPos" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1141534825]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PIDPanel/HBoxContainer_TargetPos" unique_id=450833858]
+layout_mode = 2
+text = "目标位置"
+
+[node name="TargetInput" type="LineEdit" parent="UI/PIDPanel/HBoxContainer_TargetPos" unique_id=2064491136]
+layout_mode = 2
+
+[node name="HBoxContainer_Kp" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1071826663]
+layout_mode = 2
+
+[node name="Label_Kp" type="Label" parent="UI/PIDPanel/HBoxContainer_Kp" unique_id=1772880518]
+layout_mode = 2
+text = "Kp"
+
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/HBoxContainer_Kp" unique_id=1434808230]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer_Ki" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1609546690]
+layout_mode = 2
+
+[node name="Label_Ki" type="Label" parent="UI/PIDPanel/HBoxContainer_Ki" unique_id=1484344785]
+layout_mode = 2
+text = "Ki"
+
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/HBoxContainer_Ki" unique_id=1503645576]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer_Kd" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1758761089]
+layout_mode = 2
+
+[node name="Label_Kd" type="Label" parent="UI/PIDPanel/HBoxContainer_Kd" unique_id=1535927712]
+layout_mode = 2
+text = "Kd"
+
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/HBoxContainer_Kd" unique_id=1279596742]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="UI/PIDPanel" unique_id=6021301]
+layout_mode = 2
+text = "复位
+"
+
+[node name="VarPanel" type="VBoxContainer" parent="UI" unique_id=1988633603 node_paths=PackedStringArray("data_bridge", "plotter")]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 17.0
+offset_right = 186.0
+offset_bottom = 175.0
+script = ExtResource("6_272bh")
+data_bridge = NodePath("../../DataBridge")
+plotter = NodePath("../../Plotter")
+
+[node name="EnvPanel" type="VBoxContainer" parent="UI" unique_id=1730478894 node_paths=PackedStringArray("slider_body")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.61
+anchor_top = 0.70900005
+anchor_right = -0.61
+anchor_bottom = 0.70900005
+offset_left = -0.25997925
+offset_top = -0.012008667
+offset_right = 332.74002
+offset_bottom = 269.98798
+script = ExtResource("7_5vw27")
+slider_body = NodePath("../../RigidBody")
+
+[node name="Label" type="Label" parent="UI/EnvPanel" unique_id=440509325]
+layout_mode = 2
+text = "环境参数"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/EnvPanel" unique_id=1409285782]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/EnvPanel/HBoxContainer" unique_id=664950669]
+layout_mode = 2
+text = "地面摩擦"
+
+[node name="HSlider" type="HSlider" parent="UI/EnvPanel/HBoxContainer" unique_id=1682352476]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="UI/EnvPanel/HBoxContainer" unique_id=1300084169]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0.00
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/EnvPanel" unique_id=1736677788]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/EnvPanel/HBoxContainer2" unique_id=1088742585]
+layout_mode = 2
+text = "空气阻力"
+
+[node name="HSlider" type="HSlider" parent="UI/EnvPanel/HBoxContainer2" unique_id=2045969950]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="UI/EnvPanel/HBoxContainer2" unique_id=593143699]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0.00
+"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/EnvPanel" unique_id=2078742662]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/EnvPanel/HBoxContainer3" unique_id=687051830]
+layout_mode = 2
+text = "扰动幅度"
+
+[node name="HSlider" type="HSlider" parent="UI/EnvPanel/HBoxContainer3" unique_id=5747751]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="UI/EnvPanel/HBoxContainer3" unique_id=1057195198]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0
+"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UI/EnvPanel" unique_id=1517603777]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/EnvPanel/HBoxContainer4" unique_id=1323400187]
+layout_mode = 2
+text = "扰动频率"
+
+[node name="HSlider" type="HSlider" parent="UI/EnvPanel/HBoxContainer4" unique_id=142147741]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="UI/EnvPanel/HBoxContainer4" unique_id=1403386593]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0.0Hz
+"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="UI/EnvPanel" unique_id=458836742]
+layout_mode = 2
+
+[node name="PulseInput" type="LineEdit" parent="UI/EnvPanel/HBoxContainer5" unique_id=1232815211]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "PulseInput"
+
+[node name="PulseButton" type="Button" parent="UI/EnvPanel/HBoxContainer5" unique_id=1358056332]
+layout_mode = 2
+text = "施加脉冲"
+
+[node name="Plotter" type="Control" parent="." unique_id=1329658006]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 784.0
+offset_top = 106.0
+offset_right = 1772.0
+offset_bottom = 580.0
+script = ExtResource("6_5vw27")
