@@ -1,7 +1,7 @@
 extends VBoxContainer
 class_name VarPanel
 
-@export var data_bridge: DataBridge
+@export var data_bridge: Node
 @export var plotter: Plotter
 
 var checkboxes: Dictionary = {}

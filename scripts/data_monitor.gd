@@ -49,7 +49,13 @@ func _physics_process(delta):
 	if monitor_force:
 		# 从 meta 读取最近一次控制力
 		record["force_x"] = target.get_meta("last_force", 0.0)
-	
+		
+	# 自动收集 target 上的所有 meta 数据
+	var meta_list = target.get_meta_list()
+	for key in meta_list:
+		if not record.has(key):
+			record[key] = target.get_meta(key)
+			
 	history.append(record)
 	if history.size() > max_history:
 		history.pop_front()

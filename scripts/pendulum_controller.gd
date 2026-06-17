@@ -16,6 +16,9 @@ var prev_pendulum_angle: float = 0.0
 
 func _ready():
 	set_meta("last_force", 0.0)
+	set_meta("pendulum_angle", 0.0)
+	set_meta("cart_position", position.x)
+	set_meta("cart_velocity", linear_velocity.x)
 	prev_pendulum_angle = pendulum.rotation
 	target_x = position.x
 
@@ -41,4 +44,7 @@ func _physics_process(delta):
 	force = clamp(force, -max_force, max_force)
 
 	set_meta("last_force", force)
+	set_meta("pendulum_angle", angle)
+	set_meta("cart_position", position.x)
+	set_meta("cart_velocity", linear_velocity.x)
 	apply_central_force(Vector2(-force, 0))
