@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://sg3q2c5nyt47"]
+
+[ext_resource type="Script" uid="uid://cokleg67d3xqu" path="res://scripts/main_menu.gd" id="1_ftydy"]
+
+[node name="MainMenu" type="Control" unique_id=1916833664]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 946.0
+offset_top = 518.0
+offset_right = 946.0
+offset_bottom = 518.0
+script = ExtResource("1_ftydy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=247897540]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1093057283]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "控制沙盒"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1320834245]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "滑块PID演示"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=23566057]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "一级倒立摆演示"

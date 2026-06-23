@@ -12,7 +12,7 @@ config_version=5
 
 config/name="ControlSandBox"
 config/description="一个用于将控制算法模拟至此的基于物理的沙盒"
-run/main_scene="uid://sgx577h7qcs4"
+run/main_scene="uid://sg3q2c5nyt47"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
