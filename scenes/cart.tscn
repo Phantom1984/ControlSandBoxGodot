@@ -37,12 +37,13 @@ size = Vector2(1911, 48)
 [node name="Main" type="Node2D" unique_id=507501447]
 
 [node name="RigidBody" type="RigidBody2D" parent="." unique_id=442122667 node_paths=PackedStringArray("pid")]
+position = Vector2(954, 1054)
 physics_material_override = SubResource("PhysicsMaterial_ig7tw")
 script = ExtResource("1_ig7tw")
 pid = NodePath("PIDController")
+default_target_x = 954.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody" unique_id=1368743263]
-position = Vector2(891, 1053)
 shape = SubResource("RectangleShape2D_7dm0k")
 debug_color = Color(0.7563962, 0.29091814, 0.872207, 0.41960785)
 
@@ -94,8 +95,10 @@ offset_bottom = 345.0
 
 [node name="PIDPanel" type="VBoxContainer" parent="UI" unique_id=700828055 node_paths=PackedStringArray("pid_controller", "slider_body")]
 layout_mode = 0
-offset_left = -328.0
-offset_bottom = 174.0
+offset_left = -352.0
+offset_top = 8.0
+offset_right = -24.0
+offset_bottom = 206.0
 script = ExtResource("3_h2yge")
 pid_controller = NodePath("../../RigidBody/PIDController")
 slider_body = NodePath("../../RigidBody")
@@ -114,6 +117,10 @@ text = "目标位置"
 [node name="TargetInput" type="LineEdit" parent="UI/PIDPanel/HBoxContainer_TargetPos" unique_id=2064491136]
 layout_mode = 2
 
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/HBoxContainer_TargetPos" unique_id=1447369912]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="HBoxContainer_Kp" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1071826663]
 layout_mode = 2
 
@@ -124,6 +131,10 @@ text = "Kp"
 [node name="HSlider" type="HSlider" parent="UI/PIDPanel/HBoxContainer_Kp" unique_id=1434808230]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/HBoxContainer_Kp" unique_id=332781832]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="HBoxContainer_Ki" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1609546690]
 layout_mode = 2
@@ -136,6 +147,10 @@ text = "Ki"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/HBoxContainer_Ki" unique_id=629075303]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
 [node name="HBoxContainer_Kd" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1758761089]
 layout_mode = 2
 
@@ -147,17 +162,27 @@ text = "Kd"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="UI/PIDPanel" unique_id=6021301]
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/HBoxContainer_Kd" unique_id=353343816]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-text = "复位
-"
+
+[node name="HBoxContainer_Buttons" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1023933773]
+layout_mode = 2
+
+[node name="StopButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons" unique_id=1106422206]
+layout_mode = 2
+text = "停止"
+
+[node name="ResetButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons" unique_id=922070123]
+layout_mode = 2
+text = "复位"
 
 [node name="VarPanel" type="VBoxContainer" parent="UI" unique_id=1988633603 node_paths=PackedStringArray("data_bridge", "plotter")]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 17.0
-offset_right = 186.0
-offset_bottom = 175.0
+offset_left = 23.0
+offset_top = 25.0
+offset_right = 162.0
+offset_bottom = 183.0
 script = ExtResource("6_272bh")
 data_bridge = NodePath("../../DataBridge")
 plotter = NodePath("../../Plotter")
@@ -165,14 +190,14 @@ plotter = NodePath("../../Plotter")
 [node name="EnvPanel" type="VBoxContainer" parent="UI" unique_id=1730478894 node_paths=PackedStringArray("slider_body")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.61
+anchor_left = -0.61700004
 anchor_top = 0.70900005
 anchor_right = -0.61
-anchor_bottom = 0.70900005
-offset_left = -0.25997925
-offset_top = -0.012008667
-offset_right = 332.74002
-offset_bottom = 269.98798
+anchor_bottom = 0.81200004
+offset_left = -24.521973
+offset_top = 21.987991
+offset_right = 304.74002
+offset_bottom = 264.38397
 script = ExtResource("7_5vw27")
 slider_body = NodePath("../../RigidBody")
 
@@ -266,10 +291,10 @@ text = "施加脉冲"
 
 [node name="BackButton" type="VBoxContainer" parent="UI" unique_id=999888771]
 layout_mode = 0
-offset_left = 47.0
-offset_top = 200.0
-offset_right = 200.0
-offset_bottom = 240.0
+offset_left = 23.0
+offset_top = 208.0
+offset_right = 176.0
+offset_bottom = 248.0
 script = ExtResource("8_back")
 
 [node name="Button" type="Button" parent="UI/BackButton" unique_id=999888772]

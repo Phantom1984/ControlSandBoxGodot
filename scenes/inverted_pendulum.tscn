@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b8eph5hl0e3uu" path="res://scripts/plotter.gd" id="4_vnqnf"]
 [ext_resource type="Script" uid="uid://cjt62b21tt51r" path="res://scripts/var_panel.gd" id="6_8qox5"]
 [ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/back_mainmenu.gd" id="7_ysgda"]
-[ext_resource type="Script" path="res://scripts/pendulum_pid_panel.gd" id="8_pidpanel"]
+[ext_resource type="Script" uid="uid://cw112bmdyip56" path="res://scripts/pendulum_pid_panel.gd" id="8_pidpanel"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cart"]
 friction = 0.0
@@ -27,7 +27,7 @@ size = Vector2(1200, 20)
 [node name="InvertedPendulum" type="Node2D" unique_id=2089002323]
 
 [node name="Cart" type="RigidBody2D" parent="." unique_id=1457916125 node_paths=PackedStringArray("pid", "position_pid", "pendulum")]
-position = Vector2(991, 1062)
+position = Vector2(916, 1062)
 physics_material_override = SubResource("PhysicsMaterial_cart")
 lock_rotation = true
 script = ExtResource("1_ftd7c")
@@ -66,8 +66,8 @@ integral_limit = 1.0
 output_max = 0.08
 
 [node name="Pendulum" type="RigidBody2D" parent="." unique_id=1950229106]
-position = Vector2(991, 1062)
-rotation = 0.017453292
+position = Vector2(916, 1062)
+rotation = 0.0
 mass = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pendulum" unique_id=432657005]
@@ -110,10 +110,10 @@ script = ExtResource("4_vnqnf")
 [node name="UI" type="Control" parent="." unique_id=346162328]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 407.0
-offset_top = 504.0
-offset_right = 663.0
-offset_bottom = 703.0
+offset_left = 610.0
+offset_top = 367.0
+offset_right = 866.0
+offset_bottom = 566.0
 
 [node name="VarPanel" type="VBoxContainer" parent="UI" unique_id=1451288295 node_paths=PackedStringArray("data_bridge", "plotter")]
 layout_mode = 0
@@ -128,7 +128,6 @@ plotter = NodePath("../../Plotter")
 [node name="PIDPanel" type="VBoxContainer" parent="UI" unique_id=800100101 node_paths=PackedStringArray("pendulum_pid", "position_pid", "cart")]
 layout_mode = 0
 offset_left = -400.0
-offset_top = 0.0
 offset_right = -50.0
 offset_bottom = 500.0
 script = ExtResource("8_pidpanel")
@@ -154,6 +153,10 @@ text = "Kp"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/InnerPanel/HBoxContainer_Kp" unique_id=927734202]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
 [node name="HBoxContainer_Ki" type="HBoxContainer" parent="UI/PIDPanel/InnerPanel" unique_id=800100107]
 layout_mode = 2
 
@@ -165,6 +168,10 @@ text = "Ki"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/InnerPanel/HBoxContainer_Ki" unique_id=1989753758]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
 [node name="HBoxContainer_Kd" type="HBoxContainer" parent="UI/PIDPanel/InnerPanel" unique_id=800100110]
 layout_mode = 2
 
@@ -175,6 +182,10 @@ text = "Kd"
 [node name="HSlider" type="HSlider" parent="UI/PIDPanel/InnerPanel/HBoxContainer_Kd" unique_id=800100112]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/InnerPanel/HBoxContainer_Kd" unique_id=1752715381]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="OuterPanel" type="VBoxContainer" parent="UI/PIDPanel" unique_id=800100201]
 layout_mode = 2
@@ -193,6 +204,10 @@ text = "目标位置"
 [node name="TargetInput" type="LineEdit" parent="UI/PIDPanel/OuterPanel/HBoxContainer_TargetPos" unique_id=800100205]
 layout_mode = 2
 
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/OuterPanel/HBoxContainer_TargetPos"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="HBoxContainer_Kp" type="HBoxContainer" parent="UI/PIDPanel/OuterPanel" unique_id=800100206]
 layout_mode = 2
 
@@ -203,6 +218,10 @@ text = "Kp"
 [node name="HSlider" type="HSlider" parent="UI/PIDPanel/OuterPanel/HBoxContainer_Kp" unique_id=800100208]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/OuterPanel/HBoxContainer_Kp" unique_id=135755252]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="HBoxContainer_Ki" type="HBoxContainer" parent="UI/PIDPanel/OuterPanel" unique_id=800100209]
 layout_mode = 2
@@ -215,6 +234,10 @@ text = "Ki"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/OuterPanel/HBoxContainer_Ki" unique_id=821048049]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
 [node name="HBoxContainer_Kd" type="HBoxContainer" parent="UI/PIDPanel/OuterPanel" unique_id=800100212]
 layout_mode = 2
 
@@ -225,6 +248,10 @@ text = "Kd"
 [node name="HSlider" type="HSlider" parent="UI/PIDPanel/OuterPanel/HBoxContainer_Kd" unique_id=800100214]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/OuterPanel/HBoxContainer_Kd" unique_id=948331638]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
 
 [node name="ControlMode" type="VBoxContainer" parent="UI/PIDPanel" unique_id=800100301]
 layout_mode = 2
@@ -248,16 +275,45 @@ text = "双环PID"
 
 [node name="BtnLQR" type="Button" parent="UI/PIDPanel/ControlMode/HBoxContainer" unique_id=800100306]
 layout_mode = 2
-toggle_mode = true
 disabled = true
+toggle_mode = true
 text = "LQR(未实现)"
+
+[node name="InitAnglePanel" type="VBoxContainer" parent="UI/PIDPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/PIDPanel/InitAnglePanel"]
+layout_mode = 2
+text = "摆杆初始角度(度)"
+
+[node name="HBoxContainer_InitAngle" type="HBoxContainer" parent="UI/PIDPanel/InitAnglePanel"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/InitAnglePanel/HBoxContainer_InitAngle"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/InitAnglePanel/HBoxContainer_InitAngle"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="HBoxContainer_Buttons" type="HBoxContainer" parent="UI/PIDPanel"]
+layout_mode = 2
+
+[node name="StopButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons"]
+layout_mode = 2
+text = "停止"
+
+[node name="ResetButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons"]
+layout_mode = 2
+text = "复位"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1218921648]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 228.0
-offset_right = 162.0
-offset_bottom = 259.0
+offset_left = 42.0
+offset_top = 242.0
+offset_right = 130.0
+offset_bottom = 273.0
 script = ExtResource("7_ysgda")
 
 [node name="Button" type="Button" parent="UI/VBoxContainer" unique_id=1821739964]
