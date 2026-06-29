@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/cart.gd" id="1_cart"]
+[ext_resource type="Script" path="res://scripts/pid_controller.gd" id="2_pid"]
+[ext_resource type="Script" path="res://scripts/identification/identification_panel.gd" id="3_panel"]
+[ext_resource type="Script" path="res://scripts/back_mainmenu.gd" id="4_back"]
+
+[sub_resource type="PhysicsMaterial" id="PM_1"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RS_1"]
+size = Vector2(101, 41)
+
+[sub_resource type="RectangleShape2D" id="RS_ground"]
+size = Vector2(1911, 48)
+
+[sub_resource type="RectangleShape2D" id="RS_wall"]
+size = Vector2(6.5, 281.5)
+
+[node name="Main" type="Node2D"]
+
+[node name="RigidBody" type="RigidBody2D" parent="." node_paths=PackedStringArray("pid")]
+position = Vector2(954, 1054)
+physics_material_override = SubResource("PM_1")
+script = ExtResource("1_cart")
+pid = NodePath("PIDController")
+default_target_x = 954.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody"]
+shape = SubResource("RS_1")
+
+[node name="PIDController" type="Node" parent="RigidBody"]
+script = ExtResource("2_pid")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Ground" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(954, 1099)
+shape = SubResource("RS_ground")
+
+[node name="LeftWall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4, 933)
+shape = SubResource("RS_wall")
+
+[node name="RightWall" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1906, 934)
+shape = SubResource("RS_wall")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="IdentificationPanel" type="Control" parent="UI" node_paths=PackedStringArray("plant")]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 50.0
+offset_right = 1130.0
+offset_bottom = 620.0
+script = ExtResource("3_panel")
+plant = NodePath("../../RigidBody")
+
+[node name="BackButton" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 170.0
+offset_bottom = 60.0
+script = ExtResource("4_back")
+
+[node name="Button" type="Button" parent="UI/BackButton"]
+layout_mode = 2
+text = "返回主菜单"

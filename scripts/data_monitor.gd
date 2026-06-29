@@ -47,8 +47,8 @@ func _physics_process(delta):
 		prev_velocity = target.linear_velocity
 	
 	if monitor_force:
-		# 从 meta 读取最近一次控制力
-		record["force_x"] = target.get_meta("last_force", 0.0)
+		# 优先读 control（Plant._post_control_update 写入），fallback 到 last_force（旧字段）
+		record["force_x"] = target.get_meta("control", target.get_meta("last_force", 0.0))
 		
 	# 自动收集 target 上的所有 meta 数据
 	var meta_list = target.get_meta_list()

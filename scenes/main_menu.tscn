@@ -40,3 +40,8 @@ text = "滑块PID演示"
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "一级倒立摆演示"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=33566058]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "系统辨识"

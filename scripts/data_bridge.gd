@@ -9,7 +9,7 @@ var available_vars: Dictionary = {
 	"位置 X": {"field": "position_x", "color": Color.RED, "enabled": true},
 	"速度 X": {"field": "velocity_x", "color": Color.GREEN, "enabled": true},
 	"加速度 X": {"field": "acceleration_x", "color": Color.BLUE, "enabled": true},
-	"控制力":   {"field": "force_x", "color": Color.YELLOW, "enabled": false},
+	"控制力":   {"field": "control", "color": Color.YELLOW, "enabled": false},
 }
 
 signal curve_toggled(curve_name: String, enabled: bool)

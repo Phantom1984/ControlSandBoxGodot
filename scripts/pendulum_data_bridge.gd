@@ -5,10 +5,10 @@ class_name PendulumDataBridge
 @export var plotter: Plotter
 
 var available_vars: Dictionary = {
-	"摆角":     {"field": "pendulum_angle", "color": Color.RED, "enabled": true},
-	"小车位置": {"field": "cart_position", "color": Color.GREEN, "enabled": true},
-	"小车速度": {"field": "cart_velocity", "color": Color.BLUE, "enabled": true},
-	"控制力":   {"field": "force_x", "color": Color.YELLOW, "enabled": false},
+	"摆角":     {"field": "angle", "color": Color.RED, "enabled": true},
+	"小车位置": {"field": "position_x", "color": Color.GREEN, "enabled": true},
+	"小车速度": {"field": "velocity_x", "color": Color.BLUE, "enabled": true},
+	"控制力":   {"field": "control", "color": Color.YELLOW, "enabled": false},
 }
 
 signal curve_toggled(curve_name: String, enabled: bool)
