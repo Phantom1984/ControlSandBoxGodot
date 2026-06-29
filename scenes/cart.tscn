@@ -47,6 +47,14 @@ default_target_x = 954.0
 shape = SubResource("RectangleShape2D_7dm0k")
 debug_color = Color(0.7563962, 0.29091814, 0.872207, 0.41960785)
 
+[node name="ColorRect" type="ColorRect" parent="RigidBody" unique_id=442122668]
+offset_left = -50.5
+offset_top = -20.5
+offset_right = 50.5
+offset_bottom = 20.5
+color = Color(0.14901961, 0.7372549, 1, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="PIDController" type="Node" parent="RigidBody" unique_id=728468301]
 script = ExtResource("2_0xm2m")
 
@@ -57,15 +65,38 @@ physics_material_override = SubResource("PhysicsMaterial_h2yge")
 position = Vector2(1677, 1046)
 shape = SubResource("RectangleShape2D_0xm2m")
 
+[node name="ColorRect" type="ColorRect" parent="RigidBody2" unique_id=395422054]
+offset_left = 1616.0
+offset_top = 1019.0
+offset_right = 1737.0
+offset_bottom = 1073.0
+color = Color(0.8, 0.4, 0.8, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1566681851]
 
 [node name="LeftWall" type="CollisionShape2D" parent="StaticBody2D" unique_id=1158782787]
 position = Vector2(3.75, 932.75)
 shape = SubResource("RectangleShape2D_272bh")
 
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1566681852]
+offset_top = 792.0
+offset_right = 6.5
+offset_bottom = 1073.5
+color = Color(0.5, 0.5, 0.5, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="RightWall" type="CollisionShape2D" parent="StaticBody2D" unique_id=899086441]
 position = Vector2(1906, 934)
 shape = SubResource("RectangleShape2D_5vw27")
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D" unique_id=1566681853]
+offset_left = 1906.0
+offset_top = 793.25
+offset_right = 1912.5
+offset_bottom = 1074.75
+color = Color(0.5, 0.5, 0.5, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1273869143]
 position = Vector2(954, 1099)
@@ -75,6 +106,14 @@ physics_material_override = SubResource("PhysicsMaterial_0xm2m")
 show_behind_parent = true
 shape = SubResource("RectangleShape2D_ig7tw")
 debug_color = Color(0.5646432, 0.55857855, 5.7756904e-07, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=1273869144]
+offset_left = -955.5
+offset_top = -24.0
+offset_right = 955.5
+offset_bottom = 24.0
+color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="DataMonitor" type="Node" parent="." unique_id=407729199 node_paths=PackedStringArray("target")]
 script = ExtResource("3_7mycd")

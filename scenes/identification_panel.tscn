@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene format=3 uid="uid://dwbkccevhy32p"]
 
-[ext_resource type="Script" path="res://scripts/cart.gd" id="1_cart"]
-[ext_resource type="Script" path="res://scripts/pid_controller.gd" id="2_pid"]
-[ext_resource type="Script" path="res://scripts/identification/identification_panel.gd" id="3_panel"]
-[ext_resource type="Script" path="res://scripts/back_mainmenu.gd" id="4_back"]
+[ext_resource type="Script" uid="uid://b8y4e8ptxtqub" path="res://scripts/cart.gd" id="1_cart"]
+[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/pid_controller.gd" id="2_pid"]
+[ext_resource type="Script" uid="uid://clum2jh85v2wm" path="res://scripts/identification/identification_panel.gd" id="3_panel"]
+[ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/back_mainmenu.gd" id="4_back"]
 
 [sub_resource type="PhysicsMaterial" id="PM_1"]
 friction = 0.0
@@ -17,44 +17,74 @@ size = Vector2(1911, 48)
 [sub_resource type="RectangleShape2D" id="RS_wall"]
 size = Vector2(6.5, 281.5)
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1663812372]
 
-[node name="RigidBody" type="RigidBody2D" parent="." node_paths=PackedStringArray("pid")]
+[node name="RigidBody" type="RigidBody2D" parent="." unique_id=721429841 node_paths=PackedStringArray("pid")]
 position = Vector2(954, 1054)
 physics_material_override = SubResource("PM_1")
 script = ExtResource("1_cart")
 pid = NodePath("PIDController")
 default_target_x = 954.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody" unique_id=1385858588]
 shape = SubResource("RS_1")
 
-[node name="PIDController" type="Node" parent="RigidBody"]
+[node name="ColorRect" type="ColorRect" parent="RigidBody" unique_id=1071282571]
+offset_left = -50.5
+offset_top = -20.5
+offset_right = 50.5
+offset_bottom = 20.5
+color = Color(0.14901961, 0.7372549, 1, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="PIDController" type="Node" parent="RigidBody" unique_id=884333157]
 script = ExtResource("2_pid")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1160368911]
 
-[node name="Ground" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="Ground" type="CollisionShape2D" parent="StaticBody2D" unique_id=1798081325]
 position = Vector2(954, 1099)
 shape = SubResource("RS_ground")
 
-[node name="LeftWall" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="LeftWall" type="CollisionShape2D" parent="StaticBody2D" unique_id=1943507215]
 position = Vector2(4, 933)
 shape = SubResource("RS_wall")
 
-[node name="RightWall" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="RightWall" type="CollisionShape2D" parent="StaticBody2D" unique_id=1984216319]
 position = Vector2(1906, 934)
 shape = SubResource("RS_wall")
 
-[node name="UI" type="Control" parent="."]
+[node name="GroundColor" type="ColorRect" parent="StaticBody2D" unique_id=948478379]
+offset_left = -2.0
+offset_top = 1075.0
+offset_right = 1909.0
+offset_bottom = 1123.0
+color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftWallColor" type="ColorRect" parent="StaticBody2D" unique_id=1197482099]
+offset_left = 1.0
+offset_top = 792.0
+offset_right = 7.5
+offset_bottom = 1073.5
+color = Color(0.5, 0.5, 0.5, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RightWallColor" type="ColorRect" parent="StaticBody2D" unique_id=2011526600]
+offset_left = 1903.0
+offset_top = 793.0
+offset_right = 1909.5
+offset_bottom = 1074.5
+color = Color(0.5, 0.5, 0.5, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="UI" type="Control" parent="." unique_id=576872274]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 0.0
-offset_top = 0.0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="IdentificationPanel" type="Control" parent="UI" node_paths=PackedStringArray("plant")]
+[node name="IdentificationPanel" type="Control" parent="UI" unique_id=1069266166 node_paths=PackedStringArray("plant")]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 200.0
@@ -64,15 +94,14 @@ offset_bottom = 620.0
 script = ExtResource("3_panel")
 plant = NodePath("../../RigidBody")
 
-[node name="BackButton" type="VBoxContainer" parent="UI"]
+[node name="BackButton" type="VBoxContainer" parent="UI" unique_id=1319883564]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
 offset_bottom = 60.0
 script = ExtResource("4_back")
 
-[node name="Button" type="Button" parent="UI/BackButton"]
+[node name="Button" type="Button" parent="UI/BackButton" unique_id=94396583]
 layout_mode = 2
 text = "返回主菜单"

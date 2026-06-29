@@ -24,6 +24,12 @@ friction = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ftd7c"]
 size = Vector2(1200, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_belt3"]
+size = Vector2(7, 245.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0xoh"]
+size = Vector2(7.125, 247)
+
 [node name="InvertedPendulum" type="Node2D" unique_id=2089002323]
 
 [node name="Cart" type="RigidBody2D" parent="." unique_id=1457916125 node_paths=PackedStringArray("pid", "position_pid", "pendulum")]
@@ -67,12 +73,19 @@ output_max = 0.08
 
 [node name="Pendulum" type="RigidBody2D" parent="." unique_id=1950229106]
 position = Vector2(916, 1062)
-rotation = 0.0
 mass = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pendulum" unique_id=432657005]
 position = Vector2(0.38756943, -75.449356)
 shape = SubResource("RectangleShape2D_qhvww")
+
+[node name="ColorRect" type="ColorRect" parent="Pendulum" unique_id=1950229107]
+offset_left = -3.0
+offset_top = -135.0
+offset_right = 3.0
+offset_bottom = -15.0
+color = Color(1, 0.4, 0.4, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=4533779]
 physics_material_override = SubResource("PhysicsMaterial_ground")
@@ -80,6 +93,28 @@ physics_material_override = SubResource("PhysicsMaterial_ground")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=858761670]
 position = Vector2(916, 1087)
 shape = SubResource("RectangleShape2D_ftd7c")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Ground" unique_id=2052357084]
+position = Vector2(320, 954)
+shape = SubResource("RectangleShape2D_belt3")
+
+[node name="ColorRect" type="ColorRect" parent="Ground/LeftWall" unique_id=1830106845]
+offset_left = -3.0
+offset_top = -123.0
+offset_right = 3.0
+offset_bottom = 124.0
+color = Color(0.50271857, 0.50271857, 0.5027185, 1)
+
+[node name="RightWall" type="CollisionShape2D" parent="Ground" unique_id=81510538]
+position = Vector2(1511.5625, 954.5)
+shape = SubResource("RectangleShape2D_d0xoh")
+
+[node name="ColorRect" type="ColorRect" parent="Ground/RightWall" unique_id=1317210144]
+offset_left = -3.5625
+offset_top = -123.5
+offset_right = 4.4375
+offset_bottom = 122.5
+color = Color(0.50271857, 0.50271857, 0.5027185, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Ground" unique_id=1892227064]
 offset_left = 316.0
@@ -204,7 +239,7 @@ text = "目标位置"
 [node name="TargetInput" type="LineEdit" parent="UI/PIDPanel/OuterPanel/HBoxContainer_TargetPos" unique_id=800100205]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="UI/PIDPanel/OuterPanel/HBoxContainer_TargetPos"]
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/OuterPanel/HBoxContainer_TargetPos" unique_id=1704509264]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -279,32 +314,32 @@ disabled = true
 toggle_mode = true
 text = "LQR(未实现)"
 
-[node name="InitAnglePanel" type="VBoxContainer" parent="UI/PIDPanel"]
+[node name="InitAnglePanel" type="VBoxContainer" parent="UI/PIDPanel" unique_id=1481868536]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/PIDPanel/InitAnglePanel"]
+[node name="Label" type="Label" parent="UI/PIDPanel/InitAnglePanel" unique_id=1874282864]
 layout_mode = 2
 text = "摆杆初始角度(度)"
 
-[node name="HBoxContainer_InitAngle" type="HBoxContainer" parent="UI/PIDPanel/InitAnglePanel"]
+[node name="HBoxContainer_InitAngle" type="HBoxContainer" parent="UI/PIDPanel/InitAnglePanel" unique_id=654212660]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="UI/PIDPanel/InitAnglePanel/HBoxContainer_InitAngle"]
+[node name="HSlider" type="HSlider" parent="UI/PIDPanel/InitAnglePanel/HBoxContainer_InitAngle" unique_id=229012270]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/InitAnglePanel/HBoxContainer_InitAngle"]
+[node name="SpinBox" type="SpinBox" parent="UI/PIDPanel/InitAnglePanel/HBoxContainer_InitAngle" unique_id=1975410143]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 
-[node name="HBoxContainer_Buttons" type="HBoxContainer" parent="UI/PIDPanel"]
+[node name="HBoxContainer_Buttons" type="HBoxContainer" parent="UI/PIDPanel" unique_id=1739017522]
 layout_mode = 2
 
-[node name="StopButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons"]
+[node name="StopButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons" unique_id=1688196270]
 layout_mode = 2
 text = "停止"
 
-[node name="ResetButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons"]
+[node name="ResetButton" type="Button" parent="UI/PIDPanel/HBoxContainer_Buttons" unique_id=1377740047]
 layout_mode = 2
 text = "复位"
 
