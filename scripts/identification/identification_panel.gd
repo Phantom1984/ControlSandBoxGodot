@@ -13,9 +13,9 @@ class_name IdentificationPanel
 ##   3. 运行场景，配置参数后点击"开始辨识"
 ## ============================================================
 
-const ChirpSignal = preload("res://scripts/identification/chirp_signal.gd")
-const SteppedSine = preload("res://scripts/identification/stepped_sine.gd")
-const PRBSSignal = preload("res://scripts/identification/prbs_signal.gd")
+const ChirpSignal = preload("res://scripts/identification/signals/chirp_signal.gd")
+const SteppedSine = preload("res://scripts/identification/signals/stepped_sine.gd")
+const PRBSSignal = preload("res://scripts/identification/signals/prbs_signal.gd")
 const IdentificationExperiment = preload("res://scripts/identification/identification_experiment.gd")
 const FrequencyPlotter = preload("res://scripts/identification/frequency_plotter.gd")
 

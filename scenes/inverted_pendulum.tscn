@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://sgx577h7qcs4"]
 
-[ext_resource type="Script" uid="uid://cdaua853bdrgf" path="res://scripts/pendulum_controller.gd" id="1_ftd7c"]
-[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/pid_controller.gd" id="2_yi53h"]
-[ext_resource type="Script" uid="uid://bwlr81ykxswvm" path="res://scripts/data_monitor.gd" id="3_h4483"]
-[ext_resource type="Script" uid="uid://desv2h0vsc8ge" path="res://scripts/pendulum_data_bridge.gd" id="4_8qox5"]
-[ext_resource type="Script" uid="uid://b8eph5hl0e3uu" path="res://scripts/plotter.gd" id="4_vnqnf"]
-[ext_resource type="Script" uid="uid://cjt62b21tt51r" path="res://scripts/var_panel.gd" id="6_8qox5"]
-[ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/back_mainmenu.gd" id="7_ysgda"]
-[ext_resource type="Script" uid="uid://cw112bmdyip56" path="res://scripts/pendulum_pid_panel.gd" id="8_pidpanel"]
+[ext_resource type="Script" uid="uid://cdaua853bdrgf" path="res://scripts/plants/pendulum_controller.gd" id="1_ftd7c"]
+[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/controllers/pid_controller.gd" id="2_yi53h"]
+[ext_resource type="Script" uid="uid://bwlr81ykxswvm" path="res://scripts/data/data_monitor.gd" id="3_h4483"]
+[ext_resource type="Script" uid="uid://desv2h0vsc8ge" path="res://scripts/data/pendulum_data_bridge.gd" id="4_8qox5"]
+[ext_resource type="Script" uid="uid://b8eph5hl0e3uu" path="res://scripts/data/plotter.gd" id="4_vnqnf"]
+[ext_resource type="Script" uid="uid://cjt62b21tt51r" path="res://scripts/ui/var_panel.gd" id="6_8qox5"]
+[ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/ui/back_mainmenu.gd" id="7_ysgda"]
+[ext_resource type="Script" uid="uid://cw112bmdyip56" path="res://scripts/ui/pendulum_pid_panel.gd" id="8_pidpanel"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cart"]
 friction = 0.0

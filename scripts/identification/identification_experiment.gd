@@ -26,8 +26,8 @@ signal state_changed(state: int)
 
 enum State { IDLE, RUNNING, ANALYZING, DONE, ERROR }
 
-const DataAcquirer = preload("res://scripts/identification/data_acquirer.gd")
-const WelchEstimator = preload("res://scripts/identification/welch_estimator.gd")
+const DataAcquirer = preload("res://scripts/identification/estimators/data_acquirer.gd")
+const WelchEstimator = preload("res://scripts/identification/estimators/welch_estimator.gd")
 const PassThroughController = preload("res://scripts/identification/pass_through_controller.gd")
 
 var state: int = State.IDLE

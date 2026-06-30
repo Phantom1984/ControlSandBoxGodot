@@ -27,7 +27,7 @@ class_name WelchEstimator
 ##   γ²  = |Gxy|² / (Gxx·Gyy) ∈ [0,1]
 ## ============================================================
 
-const FFT = preload("res://scripts/identification/fft.gd")
+const FFT = preload("res://scripts/identification/estimators/fft.gd")
 
 ## FFT 长度（必须为 2 的幂）
 var nfft: int = 1024

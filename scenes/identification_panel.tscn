@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dwbkccevhy32p"]
 
-[ext_resource type="Script" uid="uid://b8y4e8ptxtqub" path="res://scripts/cart.gd" id="1_cart"]
-[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/pid_controller.gd" id="2_pid"]
+[ext_resource type="Script" uid="uid://b8y4e8ptxtqub" path="res://scripts/plants/cart.gd" id="1_cart"]
+[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/controllers/pid_controller.gd" id="2_pid"]
 [ext_resource type="Script" uid="uid://clum2jh85v2wm" path="res://scripts/identification/identification_panel.gd" id="3_panel"]
-[ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/back_mainmenu.gd" id="4_back"]
+[ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/ui/back_mainmenu.gd" id="4_back"]
 
 [sub_resource type="PhysicsMaterial" id="PM_1"]
 friction = 0.0

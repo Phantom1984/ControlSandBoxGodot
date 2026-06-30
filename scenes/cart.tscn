@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://cwnbxixorykq6"]
 
-[ext_resource type="Script" uid="uid://b8y4e8ptxtqub" path="res://scripts/cart.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/pid_controller.gd" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://bwlr81ykxswvm" path="res://scripts/data_monitor.gd" id="3_7mycd"]
-[ext_resource type="Script" uid="uid://bnu1phu3yfjkv" path="res://scripts/pid_panel.gd" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://5s2cduacjx48" path="res://scripts/data_bridge.gd" id="4_272bh"]
-[ext_resource type="Script" uid="uid://b8eph5hl0e3uu" path="res://scripts/plotter.gd" id="6_5vw27"]
-[ext_resource type="Script" uid="uid://cjt62b21tt51r" path="res://scripts/var_panel.gd" id="6_272bh"]
-[ext_resource type="Script" uid="uid://h70j1rh2xw5r" path="res://scripts/env_panel.gd" id="7_5vw27"]
-[ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/back_mainmenu.gd" id="8_back"]
+[ext_resource type="Script" uid="uid://b8y4e8ptxtqub" path="res://scripts/plants/cart.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dvkhwflsyul5b" path="res://scripts/controllers/pid_controller.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bwlr81ykxswvm" path="res://scripts/data/data_monitor.gd" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://bnu1phu3yfjkv" path="res://scripts/ui/pid_panel.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://5s2cduacjx48" path="res://scripts/data/data_bridge.gd" id="4_272bh"]
+[ext_resource type="Script" uid="uid://b8eph5hl0e3uu" path="res://scripts/data/plotter.gd" id="6_5vw27"]
+[ext_resource type="Script" uid="uid://cjt62b21tt51r" path="res://scripts/ui/var_panel.gd" id="6_272bh"]
+[ext_resource type="Script" uid="uid://h70j1rh2xw5r" path="res://scripts/ui/env_panel.gd" id="7_5vw27"]
+[ext_resource type="Script" uid="uid://b05iyf1uo0d5m" path="res://scripts/ui/back_mainmenu.gd" id="8_back"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
 friction = 0.0
